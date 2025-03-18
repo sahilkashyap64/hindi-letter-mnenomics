@@ -6,24 +6,38 @@
     <title>Learn Hindi Letters with Mnemonics</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
-        .list-view .card {
-            flex-direction: row !important;
-            margin-bottom: 1rem;
-        }
-        .list-view .card-img-top {
-            width: 200px;
-            height: auto;
-        }
+        /* Improved dark mode contrast */
         .dark-mode {
             background-color: #1a1a1a;
-            color: white;
+            color: #ffffff;
         }
         .dark-mode .card {
             background-color: #2d2d2d;
+            border-color: #444;
         }
-        .card-img-top {
-            height: 200px;
+        
+        /* Better image handling */
+        .card-img {
+            max-height: 200px;
             object-fit: contain;
+            padding: 1rem;
+        }
+        
+        /* Enhanced list view */
+        .list-view .card {
+            flex-direction: row;
+            align-items: center;
+        }
+        .list-view .card-img {
+            width: 150px;
+            height: 150px;
+            max-height: none;
+        }
+        
+        /* Better typography */
+        .devanagari-font {
+            font-family: 'Noto Sans Devanagari', sans-serif;
+            font-size: 2.5rem;
         }
     </style>
 </head>
@@ -51,66 +65,226 @@
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"></script>
     <script>
+        // Hindi letters data (truncated for example)
          const hindiLetters = [
-            {
-                "character": "अ",
-                "transliteration": "a",
-                "mnemonic": "An apple with a bite",
-                "exampleWord": "अनार (Pomegranate)",
-                "image": "https://picsum.photos/200/300?random=1",
-                "group": "vowels"
-            },
-{
-                "character": "अ",
-                "transliteration": "a",
-                "mnemonic": "An apple with a bite",
-                "exampleWord": "अनार (Pomegranate)",
-                "image": "https://picsum.photos/200/300?random=1",
-                "group": "vowels"
-            },
-            {
-                "character": "आ",
-                "transliteration": "aa",
-                "mnemonic": "A wide open mouth",
-                "exampleWord": "आम (Mango)",
-                "image": "https://picsum.photos/200/300?random=2",
-                "group": "vowels"
-            },
-            {
-                "character": "क",
-                "transliteration": "ka",
-                "mnemonic": "Kite flying in the sky",
-                "exampleWord": "कमल (Lotus)",
-                "image": "https://picsum.photos/200/300?random=3",
-                "group": "consonants"
-            },
-            {
-                "character": "ख",
-                "transliteration": "kha",
-                "mnemonic": "Khakra (Indian snack) shape",
-                "exampleWord": "खरगोश (Rabbit)",
-                "image": "https://picsum.photos/200/300?random=4",
-                "group": "consonants"
-            },
-            // Add more letters following the same pattern...
-            {
-                "character": "ग",
-                "transliteration": "ga",
-                "mnemonic": "Guitar shape",
-                "exampleWord": "गमला (Flower pot)",
-                "image": "https://picsum.photos/200/300?random=5",
-                "group": "consonants"
-            },
-            {
-                "character": "घ",
-                "transliteration": "gha",
-                "mnemonic": "Ghost shape",
-                "exampleWord": "घड़ी (Clock)",
-                "image": "https://picsum.photos/200/300?random=6",
-                "group": "consonants"
-            }
-            // Add all other letters...
-        ];
+    // Vowels (स्वर)
+    {
+        "character": "अ",
+        "transliteration": "a",
+        "IPA": "[ə]",
+        "mnemonic": "Apple shape",
+        "exampleWord": "अनार (Pomegranate)",
+        "image": "https://placehold.co/400?text=A&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "आ",
+        "transliteration": "ā",
+        "IPA": "[ɑː]",
+        "mnemonic": "Wide open mouth",
+        "exampleWord": "आम (Mango)",
+        "image": "https://placehold.co/400?text=aa&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "इ",
+        "transliteration": "i",
+        "IPA": "[ɪ]",
+        "mnemonic": "Ink drop shape",
+        "exampleWord": "इमली (Tamarind)",
+        "image": "https://placehold.co/400?text=i&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "ई",
+        "transliteration": "ī",
+        "IPA": "[iː]",
+        "mnemonic": "Ear shape",
+        "exampleWord": "ईख (Sugarcane)",
+        "image": "https://placehold.co/400?text=ee&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "उ",
+        "transliteration": "u",
+        "IPA": "[ʊ]",
+        "mnemonic": "Owl's eyes",
+        "exampleWord": "उल्लू (Owl)",
+        "image": "https://placehold.co/400?text=uu&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "ऊ",
+        "transliteration": "ū",
+        "IPA": "[uː]",
+        "mnemonic": "Moon shape",
+        "exampleWord": "ऊन (Wool)",
+        "image": "https://placehold.co/400?text=oo&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "ऋ",
+        "transliteration": "ṛ",
+        "IPA": "[ɻɪ]",
+        "mnemonic": "Rishi's symbol",
+        "exampleWord": "ऋषि (Sage)",
+        "image": "https://placehold.co/400?text=ri&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "ए",
+        "transliteration": "e",
+        "IPA": "[eː]",
+        "mnemonic": "Egg shape",
+        "exampleWord": "एक (One)",
+        "image": "https://placehold.co/400?text=e&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "ऐ",
+        "transliteration": "ai",
+        "IPA": "[ɛː]",
+        "mnemonic": "Ice cream cone",
+        "exampleWord": "ऐनक (Spectacles)",
+        "image": "https://placehold.co/400?text=ai&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "ओ",
+        "transliteration": "o",
+        "IPA": "[oː]",
+        "mnemonic": "Open mouth",
+        "exampleWord": "ओखल (Mortar)",
+        "image": "https://placehold.co/400?text=o&font=roboto",
+        "group": "vowels"
+    },
+    {
+        "character": "औ",
+        "transliteration": "au",
+        "IPA": "[ɔː]",
+        "mnemonic": "Auspicious mark",
+        "exampleWord": "औषध (Medicine)",
+        "image": "https://placehold.co/400?text=au&font=roboto",
+        "group": "vowels"
+    },
+
+    // Consonants (व्यंजन)
+    // Velar
+    {
+        "character": "क",
+        "transliteration": "ka",
+        "IPA": "[k]",
+        "mnemonic": "Kite shape",
+        "exampleWord": "कमल (Lotus)",
+        "image": "https://placehold.co/400?text=ka&font=roboto",
+        "group": "velar"
+    },
+    {
+        "character": "ख",
+        "transliteration": "kha",
+        "IPA": "[kʰ]",
+        "mnemonic": "Khakra shape",
+        "exampleWord": "खरगोश (Rabbit)",
+        "image": "https://placehold.co/400?text=kha&font=roboto",
+        "group": "velar"
+    },
+    {
+        "character": "ग",
+        "transliteration": "ga",
+        "IPA": "[ɡ]",
+        "mnemonic": "Guitar shape",
+        "exampleWord": "गमला (Flower pot)",
+        "image": "https://placehold.co/400?text=ga&font=roboto",
+        "group": "velar"
+    },
+    {
+        "character": "घ",
+        "transliteration": "gha",
+        "IPA": "[ɡʱ]",
+        "mnemonic": "Ghost shape",
+        "exampleWord": "घड़ी (Clock)",
+        "image": "https://placehold.co/400?text=gha&font=roboto",
+        "group": "velar"
+    },
+    {
+        "character": "ङ",
+        "transliteration": "ṅa",
+        "IPA": "[ŋ]",
+        "mnemonic": "Nose shape (nasal)",
+        "exampleWord": "अंगूर (Grapes)",
+        "image": "https://placehold.co/400?text=nga&font=roboto",
+        "group": "velar"
+    },
+
+    // Palatal
+    {
+        "character": "च",
+        "transliteration": "cha",
+        "IPA": "[tʃ]",
+        "mnemonic": "Chai cup",
+        "exampleWord": "चम्मच (Spoon)",
+        "image": "https://placehold.co/400?text=cha&font=roboto",
+        "group": "palatal"
+    },
+    {
+        "character": "छ",
+        "transliteration": "chha",
+        "IPA": "[tʃʰ]",
+        "mnemonic": "Chhota (small) version",
+        "exampleWord": "छतरी (Umbrella)",
+        "image": "img/chha.png",
+        "group": "palatal"
+    },
+    {
+        "character": "ज",
+        "transliteration": "ja",
+        "IPA": "[dʒ]",
+        "mnemonic": "Jewel shape",
+        "exampleWord": "जहाज (Ship)",
+        "image": "https://placehold.co/400?text=ja&font=roboto",
+        "group": "palatal"
+    },
+    {
+        "character": "झ",
+        "transliteration": "jha",
+        "IPA": "[dʒʱ]",
+        "mnemonic": "Jhanda (flag) shape",
+        "exampleWord": "झंडा (Flag)",
+        "image": "https://placehold.co/400?text=jha&font=roboto",
+        "group": "palatal"
+    },
+    {
+        "character": "ञ",
+        "transliteration": "ña",
+        "IPA": "[ɲ]",
+        "mnemonic": "Nasal mark",
+        "exampleWord": "पंखा (Fan)",
+        "image": "https://placehold.co/400?text=nya&font=roboto",
+        "group": "palatal"
+    },
+
+    // Continue this pattern for all consonant groups...
+    
+    // Special Characters
+    {
+        "character": "अं",
+        "transliteration": "aṃ",
+        "IPA": "[ə̃]",
+        "mnemonic": "Nasal dot",
+        "exampleWord": "अंगूर (Grapes)",
+        "image": "https://placehold.co/400?text=anusvara&font=roboto",
+        "group": "diacritics"
+    },
+    {
+        "character": "अः",
+        "transliteration": "aḥ",
+        "IPA": "[əh]",
+        "mnemonic": "Visarga symbol",
+        "exampleWord": "प्रातः (Morning)",
+        "image": "https://placehold.co/400?text=visarga&font=roboto",
+        "group": "diacritics"
+    }
+];
 
         function renderLetters(viewType = 'grid') {
             const container = document.getElementById('lettersContainer');
@@ -118,20 +292,22 @@
             
             hindiLetters.forEach(letter => {
                 const col = document.createElement('div');
-                col.className = viewType === 'grid' ? 'col-12 col-md-6 col-lg-4' : 'col-12';
+                col.className = viewType === 'grid' 
+                    ? 'col-12 col-md-6 col-lg-4' 
+                    : 'col-12';
                 
                 const card = `
-                    <div class="card h-100">
+                    <div class="card h-100 shadow-sm">
                         <img src="${letter.image}" 
-                             class="card-img-top mx-auto mt-3" 
-                             alt="${letter.mnemonic}"
-                             style="max-width: 200px;">
+                             class="card-img" 
+                             alt="${letter.character}">
                         <div class="card-body text-center">
-                            <h2 class="card-title display-4">${letter.character}</h2>
+                            <h2 class="card-title devanagari-font">${letter.character}</h2>
                             <div class="details">
                                 <p class="mb-1"><strong>Transliteration:</strong> ${letter.transliteration}</p>
+                                <p class="mb-1"><strong>IPA:</strong> ${letter.IPA}</p>
                                 <p class="mb-1"><strong>Mnemonic:</strong> ${letter.mnemonic}</p>
-                                <p class="mb-0"><strong>Example:</strong> ${letter.exampleWord}</p>
+                                <p class="mb-0 text-muted">${letter.exampleWord}</p>
                             </div>
                         </div>
                     </div>
@@ -141,7 +317,7 @@
                 container.appendChild(col);
             });
 
-            container.parentElement.classList[viewType === 'list' ? 'add' : 'remove']('list-view');
+            container.classList.toggle('list-view', viewType === 'list');
         }
 
         // Event listeners
